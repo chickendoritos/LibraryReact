@@ -7,7 +7,7 @@ const books = {
   Book2: {
     id: 2,
     name: "Book2",
-    desc: "This book is named Book3"
+    desc: "This book is named Book2"
   },
   Book3: {
     id: 3,

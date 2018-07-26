@@ -40,7 +40,7 @@ class App extends Component {
         <div style={cartSyle}>
         <h3>Your Cart Below</h3>
           <Cart cartItems={this.state.cartItems} removeBookFromCart={this.removeBookFromCart} />
-          <h4>Your checking out {Object.keys(this.state.cartItems).length} books!</h4>
+          <h4>You're checking out {Object.keys(this.state.cartItems).length} books!</h4>
         </div>
       </div>
     );

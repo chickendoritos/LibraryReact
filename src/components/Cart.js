@@ -4,10 +4,9 @@ class Cart extends Component {
     renderCartItem = key => {
         const cartItem = this.props.cartItems[key];
         return (
-            <div>
-                {cartItem}
-                <button onClick={() => this.props.removeBookFromCart(key)}>X Remove From Cart</button>
-                <br /><br />
+            <div className="cartItem" key={key}>
+                <h3>{cartItem}</h3>
+                <button className="customBtn redBtn" onClick={() => this.props.removeBookFromCart(key)}>Remove From Cart</button>
             </div>
         );
     };

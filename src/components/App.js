@@ -9,14 +9,25 @@ class App extends Component {
     cartItems: {}
   };
   addBookToCart = (bookName) => {
-    const cartItems = { ...this.state.cartItems };
-    cartItems[`book${Date.now()}`] = bookName;
-    this.setState({ cartItems });
+    if (this.bookExistsInCart(bookName)) {
+      const cartItems = { ...this.state.cartItems };
+      cartItems[bookName] = bookName;
+      this.setState({ cartItems });
+    } else {
+      alert("You've already added this book!");
+    }
   };
   removeBookFromCart = (key) => {
     const cartItems = { ...this.state.cartItems };
     delete cartItems[key];
     this.setState({ cartItems });
+  };
+  bookExistsInCart = (key) => {
+    var result = false;
+    if (this.state.cartItems[key] === undefined)
+      result = true;
+
+    return result;
   };
   render() {
     const bookListSyle = {
@@ -27,18 +38,17 @@ class App extends Component {
     const cartSyle = {
       width: "400px",
       display: "inline-block",
-      float: "left",
-      "padding-top" : "100px"
+      float: "left"
     };
     return (
       <div>
-        <div style={bookListSyle}>
-          <h1>Welcome to the library!</h1>
-          <h3>Add books to your cart.</h3>
+        <h1>Welcome to the library!</h1>
+        <div className="box" style={bookListSyle}>
+          <h3>Add books to your cart!</h3>
           {Object.keys(this.state.books).map(key => <Book key={key} index={key} book={this.state.books[key]} addBookToCart={this.addBookToCart} />)}
         </div>
-        <div style={cartSyle}>
-        <h3>Your Cart Below</h3>
+        <div className="box" style={cartSyle}>
+          <h3>Your Cart Below</h3>
           <Cart cartItems={this.state.cartItems} removeBookFromCart={this.removeBookFromCart} />
           <h4>You're checking out {Object.keys(this.state.cartItems).length} books!</h4>
         </div>

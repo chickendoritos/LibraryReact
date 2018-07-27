@@ -1,5 +1,36 @@
 body {
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 50px;
   font-family: sans-serif;
+  background-color: #ecf0f1;
+}
+
+.box {
+  margin-bottom: 10px;
+  background-color: #fff;
+  padding: 5px 30px 20px 30px;
+  font-size: 14px;
+  box-shadow: 2px 2px 1px #bbb;
+  margin-right: 10px;
+}
+
+.customBtn {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.redBtn {
+  background-color: #e74c3c;
+}
+
+.cartItem {
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 10px;
 }

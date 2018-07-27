@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 class Cart extends Component {
     renderCartItem = key => {
         const cartItem = this.props.cartItems[key];
+        const book = this.props.books[key];
+        if (!book) return null
+
         return (
             <div className="cartItem" key={key}>
                 <h3>{cartItem}</h3>

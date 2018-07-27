@@ -10,6 +10,11 @@ class App extends Component {
     cartItems: {}
   };
   componentDidMount() {
+    const localStorageRef = localStorage.getItem("cart");
+    if (localStorageRef) {
+      this.setState({ cartItems: JSON.parse(localStorageRef) });
+    }
+
     this.ref = base.syncState(`/books`, {
       context: this,
       state: "books"
@@ -18,6 +23,9 @@ class App extends Component {
   }
   componentWillUnmount() {
     base.removeBinding(this.ref);
+  }
+  componentDidUpdate() {
+    localStorage.setItem("cart", JSON.stringify(this.state.cartItems));
   }
   addBookToCart = (bookName) => {
     if (this.bookExistsInCart(bookName)) {
@@ -60,7 +68,7 @@ class App extends Component {
         </div>
         <div className="box" style={cartSyle}>
           <h3>Your Cart Below</h3>
-          <Cart cartItems={this.state.cartItems} removeBookFromCart={this.removeBookFromCart} />
+          <Cart cartItems={this.state.cartItems} books={this.state.books} removeBookFromCart={this.removeBookFromCart} />
           <h4>You're checking out {Object.keys(this.state.cartItems).length} books!</h4>
         </div>
       </div>

@@ -2,12 +2,23 @@ import React, { Component } from 'react';
 import Book from "./Book";
 import Cart from "./Cart";
 import books from "../data/books";
+import base from "../base";
 
 class App extends Component {
   state = {
-    books: books,
+    books: {},
     cartItems: {}
   };
+  componentDidMount() {
+    this.ref = base.syncState(`/books`, {
+      context: this,
+      state: "books"
+    });
+    //this.setState({books});
+  }
+  componentWillUnmount() {
+    base.removeBinding(this.ref);
+  }
   addBookToCart = (bookName) => {
     if (this.bookExistsInCart(bookName)) {
       const cartItems = { ...this.state.cartItems };
